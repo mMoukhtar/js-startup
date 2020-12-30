@@ -62,7 +62,7 @@ const moduleURL = new URL(import.meta.url);
 const dirname = path.dirname(moduleURL.pathname);
 
 export default {
-    entry: ['webpack-hot-middleware/client', './src/client/index.js'],
+    entry: ['./src/client/index.js', 'webpack-hot-middleware/client?reload=true'],
     output: {
         filename: 'main.js',
         path: path.resolve(dirname, 'dist'),
@@ -75,17 +75,22 @@ export default {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: path.join(dirname, 'dist'),
+        watchContentBase: true,
+        hot: true,
+        stats: {
+            colors: true,
+        },
     },
     // Loaders
     module: {
         rules: [
             {
                 test: /.m?js$/,
-                use: 'babel-loader',
+                use: { loader: 'babel-loader' },
                 exclude: /node_module/,
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }],
             },
         ],
@@ -96,15 +101,7 @@ export default {
             filename: 'index.html',
             template: './src/client/views/index.html',
         }),
-        new CleanWebpackPlugin({
-            // Simulate the removal of files
-            dry: true,
-            // Write Logs to Console
-            verbose: true,
-            // Automatically remove all unused webpack assets on rebuild
-            cleanStaleWebpackAssets: true,
-            protectWebpackAssets: false,
-        }),
+        new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
 };

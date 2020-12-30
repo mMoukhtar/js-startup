@@ -1,6 +1,6 @@
 function test() {
-    alert('bye');
-    alert('bye');
+    console.log(':: Hello from test');
+    console.log(':: Hello ');
 }
 
 export { test };
