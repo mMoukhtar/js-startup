@@ -11,6 +11,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevConfig from '../../webpack.dev.js';
 import path from 'path';
+import open from 'open';
 
 // Get access to dirname
 const moduleURL = new URL(import.meta.url);
@@ -46,8 +47,7 @@ const port = process.env.port;
 app.listen(port, () => {
     console.log(chalk.green('Express Server is running...'));
     console.log(chalk.green(`http://localhost:${port}`));
-    // Automatically open in browser
-    // open(`http://localhost:${port}`);
+    open(`http://localhost:${port}`, { app: 'google chrome' });
 });
 
 //Get

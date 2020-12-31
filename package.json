@@ -6,9 +6,9 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "babel-node ./src/buildScripts/build.prod.js",
+        "build": "node ./src/buildScripts/build.prod.js",
         "start": "node src/server/server.prod.js",
-        "build:dev": "babel-node ./src/buildScripts/build.dev.js",
+        "build:dev": "node ./src/buildScripts/build.dev.js",
         "start:dev": "node src/server/server.dev.js"
     },
     "keywords": [],
